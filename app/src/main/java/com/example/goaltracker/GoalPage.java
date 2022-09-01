@@ -5,11 +5,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class GoalPage extends AppCompatActivity {
     ArrayList<GoalModel> goalModels = new ArrayList<>();
+    TextView Num_of_coins;
+    FloatingActionButton Add_Goal_Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +27,14 @@ public class GoalPage extends AppCompatActivity {
                 goalModels);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Add_Goal_Button = findViewById(R.id.Add_Goal_Button);
+        Num_of_coins = findViewById(R.id.Num_of_coins);
+        Add_Goal_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 }
