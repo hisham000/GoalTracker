@@ -2,4 +2,9 @@
     <string name="app_name">Goal Tracker</string>
     <string name="goals">Goals</string>
     <string name="num_of_coins"># of Coins</string>
+    <string-array name="imp">
+        <item>Very Important</item>
+        <item>Important</item>
+        <item>Not Important</item>
+    </string-array>
 </resources>

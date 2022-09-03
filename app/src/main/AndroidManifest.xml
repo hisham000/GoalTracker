@@ -17,10 +17,10 @@
             android:name=".AddGoalPage"
             android:exported="false" />
         <activity
-            android:name=".GoalPage"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".GoalPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
