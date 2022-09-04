@@ -6,11 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 public class AddGoalPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner ImpSp;
+    EditText GoalNameET;
+    EditText DescEt;
+    EditText DueDateEt;
+    EditText CategEt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
