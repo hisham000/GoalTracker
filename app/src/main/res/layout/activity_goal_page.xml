@@ -10,8 +10,11 @@
         android:id="@+id/GoalRV"
         android:layout_width="383dp"
         android:layout_height="512dp"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="90dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/Page_Title"
