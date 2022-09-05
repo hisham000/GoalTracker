@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -29,12 +30,18 @@ public class GoalPage extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Add_Goal_Button = findViewById(R.id.Add_Goal_Button);
         Num_of_coins = findViewById(R.id.Num_of_coins);
+
+
         Add_Goal_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(GoalPage.this,AddGoalPage.class));
             }
         });
+
+
     }
+
+
 
 }
