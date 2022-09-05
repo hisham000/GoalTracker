@@ -2,6 +2,7 @@ package com.example.goaltracker;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -10,8 +11,8 @@ public class GoalsDB {
     public static final String KEY_ROWGN = "_GN";//Goal Name
     public static final String KEY_Category = "_category";
     public static final String KEY_DueDate = "due_date";
-    public static final String Key_Importance = "_importance";
-    public static final String Key_Description = "_description";
+    public static final String KEY_Importance = "_importance";
+    public static final String KEY_Description = "_description";
 
     private final String DATABASE_NAME = "GoalsDB";
     private final String DATABASE_TABLE = "GoalTable";
@@ -39,8 +40,8 @@ public class GoalsDB {
                 KEY_ROWGN + "TEXT PRIMARY KEY NOT NULL, " +
                    KEY_Category + " TEXT NOT NULL, " +
                    KEY_DueDate + " TEXT NOT NULL, " +
-                   Key_Importance + " TEXT NOT NULL, " +
-                   Key_Description + " TEXT NOT NULL);";
+                   KEY_Importance + " TEXT NOT NULL, " +
+                   KEY_Description + " TEXT NOT NULL);";
 
            db.execSQL(sqlCode);//As soon as we execute this our table will be created
             //On create only runs the first time the database is created
@@ -69,9 +70,45 @@ public class GoalsDB {
         ContentValues cv = new ContentValues();
         cv.put(KEY_ROWGN, GoalName);
         cv.put(KEY_Category, Category);
-        cv.put(Key_Description, Description);
+        cv.put(KEY_Description, Description);
+        cv.put(KEY_Importance, Importance);
+        cv.put(KEY_DueDate, DueDate);
+        return ourDatabase.insert(DATABASE_TABLE, null, cv);
 
     }
+    public String getData()
+    {
+        String [] columns = new String[] {KEY_ROWGN, KEY_Description, KEY_DueDate, KEY_Category, KEY_Importance};
+        Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null,null,null,null);
+        String result = "";
 
+        int iRowGN = c.getColumnIndex(KEY_ROWGN);
+        int iDescription = c.getColumnIndex(KEY_Description);
+        int iImportance = c.getColumnIndex(KEY_Importance);
+        int iCategory = c.getColumnIndex(KEY_Category);
+        int iDueDate = c.getColumnIndex(KEY_DueDate);
 
+        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+            result = result + c.getString(iRowGN) + ": " + c.getString(iDescription) + " "+
+                    c.getString(iImportance) + " " + c.getString(iCategory) + " " + c.getString(iDueDate);
+        }
+        c.close();
+        return result;
+    }
+    public long deleteEntry(String rowGN)
+    {
+        return ourDatabase.delete(DATABASE_TABLE, KEY_ROWGN + "=?",new String[]{rowGN});
+
+    }
+    public long updateEntry(String rowGN, String Description, String Importance, String Category, String DueDate)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_ROWGN, rowGN);
+        cv.put(KEY_Description, Description);
+        cv.put(KEY_Category, Category);
+        cv.put(KEY_DueDate, DueDate);
+        cv.put(KEY_Importance, Importance);
+
+        return ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWGN + "=?",new String[]{rowGN});
+    }
 }
