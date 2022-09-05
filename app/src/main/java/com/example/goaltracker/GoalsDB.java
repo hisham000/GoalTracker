@@ -69,6 +69,7 @@ public class GoalsDB {
         ContentValues cv = new ContentValues();
         cv.put(KEY_ROWGN, GoalName);
         cv.put(KEY_Category, Category);
+        cv.put(Key_Description, Description);
 
     }
 
