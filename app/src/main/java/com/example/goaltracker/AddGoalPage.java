@@ -2,6 +2,7 @@ package com.example.goaltracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.SQLException;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,7 +25,7 @@ public class AddGoalPage extends AppCompatActivity implements AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_goal_page);
         ImpSp = findViewById(R.id.ImpSp);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.imp, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.imp, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ImpSp.setAdapter(adapter);
         ImpSp.setOnItemSelectedListener(this);
@@ -33,24 +34,28 @@ public class AddGoalPage extends AppCompatActivity implements AdapterView.OnItem
         DueDateEt = findViewById(R.id.DueDateEt);
         CategEt = findViewById(R.id.CategEt);
         AddGoalBtn = findViewById(R.id.AddGoalBtn);
-
-        AddGoalBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String GoalName = GoalNameET.getText().toString().trim();
-                String Importance = ImpSp.getSelectedItem().toString();
-                String Desc = DescEt.getText().toString();
-                String duedate = DueDateEt.getText().toString();
-                String Category = CategEt.getText().toString().trim();
-                //save to SQLite
-                //Somehow get it to appear in recyclerview
-
-            }
-        });
-
-
-
     }
+
+    public void btnAdd(View v)
+    {
+            String GoalName = GoalNameET.getText().toString().trim();
+            String Importance = ImpSp.getSelectedItem().toString();
+            String Desc = DescEt.getText().toString();
+            String duedate = DueDateEt.getText().toString();
+            String Category = CategEt.getText().toString().trim();
+            String pp = "0";
+            //save to SQLite
+            //Somehow get it to appear in recyclerview
+            try {
+                GoalsDB db = new GoalsDB(this);
+                db.open();
+                db.createEntry(GoalName, Desc, Importance, Category, duedate, pp);
+                db.close();
+            } catch (SQLException e) {
+                Toast.makeText(AddGoalPage.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

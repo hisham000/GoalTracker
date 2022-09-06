@@ -7,12 +7,15 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 public class GoalsDB {
     public static final String KEY_ROWGN = "_GN";//Goal Name
     public static final String KEY_Category = "_category";
     public static final String KEY_DueDate = "due_date";
     public static final String KEY_Importance = "_importance";
     public static final String KEY_Description = "_description";
+    public static final String KEY_ProgressPercentage = "progress_percentage";
 
     private final String DATABASE_NAME = "GoalsDB";
     private final String DATABASE_TABLE = "GoalTable";
@@ -41,6 +44,7 @@ public class GoalsDB {
                    KEY_Category + " TEXT NOT NULL, " +
                    KEY_DueDate + " TEXT NOT NULL, " +
                    KEY_Importance + " TEXT NOT NULL, " +
+                   KEY_ProgressPercentage + "TEXT NOT NULL, " +
                    KEY_Description + " TEXT NOT NULL);";
 
            db.execSQL(sqlCode);//As soon as we execute this our table will be created
@@ -57,15 +61,15 @@ public class GoalsDB {
     }
     public GoalsDB open() throws SQLException//helps us open database to read/write from it
     {
-        ourHelper = new DBHelper(ourContext);//goes to databse name and version if database version diff than that on phone goes to onupgrade
+        ourHelper = new DBHelper(ourContext);//goes to database name and version if database version diff than that on phone goes to ON upgrade
         ourDatabase = ourHelper.getWritableDatabase();
         return this;
     }
-    public void close()//closes databse
+    public void close()
     {
         ourHelper.close();
     }
-    public long createEntry(String GoalName, String Description, String Importance, String Category, String DueDate)
+    public long createEntry(String GoalName, String Description, String Importance, String Category, String DueDate, String ProgressPercentage)
     {
         ContentValues cv = new ContentValues();
         cv.put(KEY_ROWGN, GoalName);
@@ -73,15 +77,17 @@ public class GoalsDB {
         cv.put(KEY_Description, Description);
         cv.put(KEY_Importance, Importance);
         cv.put(KEY_DueDate, DueDate);
+        cv.put(KEY_ProgressPercentage, ProgressPercentage);
         return ourDatabase.insert(DATABASE_TABLE, null, cv);
 
     }
     public String getData()
     {
-        String [] columns = new String[] {KEY_ROWGN, KEY_Description, KEY_DueDate, KEY_Category, KEY_Importance};
+        String [] columns = new String[] {KEY_ROWGN, KEY_Description, KEY_DueDate, KEY_Category, KEY_Importance, KEY_ProgressPercentage};
         Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null,null,null,null);
         String result = "";
 
+        int iProgressPercentage = c.getColumnIndex(KEY_ProgressPercentage);
         int iRowGN = c.getColumnIndex(KEY_ROWGN);
         int iDescription = c.getColumnIndex(KEY_Description);
         int iImportance = c.getColumnIndex(KEY_Importance);
@@ -95,6 +101,99 @@ public class GoalsDB {
         c.close();
         return result;
     }
+    public ArrayList getNameList() {
+        String[] columns = new String[]{KEY_ROWGN};//specify which columns to retrieve
+        Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);//create a cursor to start at a certain position
+        ArrayList<String> result = new ArrayList<String>();
+
+        //Getting the index for every column:
+        int iRowGN = c.getColumnIndex(KEY_ROWGN);
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            result.add(c.getString(iRowGN));
+        }
+        c.close();
+        return result;
+    }
+
+        public ArrayList getDiscList()
+        {
+            String [] columns = new String[] {KEY_Description};//specify which columns to retrieve
+            Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null,null,null,null);//create a cursor to start at a certain position
+            ArrayList<String> result = new ArrayList<String>();
+
+            //Getting the index for every column:
+            int iDescription = c.getColumnIndex(KEY_Description);
+
+            for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
+                result.add(c.getString(iDescription));
+            }
+            c.close();
+            return result;
+    }
+        public ArrayList<String> getImportanceList()
+        {
+            String[] columns = new String[]{KEY_Importance};//specify which columns to retrieve
+            Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);//create a cursor to start at a certain position
+            ArrayList<String> result = new ArrayList<String>();
+
+            //Getting the index for every column:
+            int iImportance = c.getColumnIndex(KEY_Importance);
+
+            for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+                result.add(c.getString(iImportance));
+            }
+            c.close();
+            return result;
+        }
+    public ArrayList<String> getCategoryList()
+    {
+        String[] columns = new String[]{KEY_Category};//specify which columns to retrieve
+        Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);//create a cursor to start at a certain position
+        ArrayList<String> result = new ArrayList<String>();
+
+        //Getting the index for every column:
+        int iCategory = c.getColumnIndex(KEY_Category);
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            result.add(c.getString(iCategory));
+        }
+        c.close();
+        return result;
+    }
+    public ArrayList<String> getDueDateList()
+    {
+        String[] columns = new String[]{KEY_DueDate};//specify which columns to retrieve
+        Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);//create a cursor to start at a certain position
+        ArrayList<String> result = new ArrayList<String>();
+
+        //Getting the index for every column:
+        int iDueDate = c.getColumnIndex(KEY_DueDate);
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            result.add(c.getString(iDueDate));
+        }
+        c.close();
+        return result;
+    }
+    public ArrayList<String> getPpList()//progress percentage
+    {
+        String[] columns = new String[]{KEY_ProgressPercentage};//specify which columns to retrieve
+        Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);//create a cursor to start at a certain position
+        ArrayList<String> result = new ArrayList<String>();
+
+        //Getting the index for every column:
+        int iProgessPercentage = c.getColumnIndex(KEY_ProgressPercentage);
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            result.add(c.getString(iProgessPercentage));
+        }
+        c.close();
+        return result;
+    }
+
+
+
     public long deleteEntry(String rowGN)
     {
         return ourDatabase.delete(DATABASE_TABLE, KEY_ROWGN + "=?",new String[]{rowGN});
