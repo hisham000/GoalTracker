@@ -11,13 +11,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Activity_signup extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
     EditText EtFirstName;
-    EditText lastName;
-    EditText email;
-    EditText password;
-    EditText confirmPassword;
-    Button signup;
+    EditText EtLastName;
+    EditText ETemail;
+    EditText ETpassword;
+    EditText ETconfirmPassword;
+    Button BtnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +25,13 @@ public class Activity_signup extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         EtFirstName = findViewById(R.id.EtFirstName);
-        lastName = findViewById(R.id.lastName);
-        address = findViewById(R.id.address);
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        confirmPassword = findViewById(R.id.confirmPassword);
-        signup = findViewById(R.id.signup);
+        EtLastName = findViewById(R.id.EtLastName);
+        ETemail = findViewById(R.id.ETemail);
+        ETpassword = findViewById(R.id.ETpassword);
+        ETconfirmPassword = findViewById(R.id.ETconfirmPassword);
+        BtnSignUp = findViewById(R.id.BtnSignUp);
 
-        register.setOnClickListener(new View.OnClickListener() {
+        BtnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkDataEntered();
@@ -51,17 +50,17 @@ public class Activity_signup extends AppCompatActivity {
     }
 
     void checkDataEntered() {
-        if (isEmpty(firstName)) {
+        if (isEmpty(EtFirstName)) {
             Toast t = Toast.makeText(this, "You must enter first name to register!", Toast.LENGTH_SHORT);
             t.show();
         }
 
-        if (isEmpty(lastName)) {
-            lastName.setError("Last name is required!");
+        if (isEmpty(EtLastName)) {
+            EtLastName.setError("Last name is required!");
         }
 
-        if (isEmail(email) == false) {
-            email.setError("Enter valid email!");
+        if (!isEmail(ETemail)) {
+            ETemail.setError("Enter valid email!");
         }
 
     }
