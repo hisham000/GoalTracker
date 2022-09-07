@@ -7,13 +7,26 @@
         <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/circle.xml" value="0.183" />
         <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.184" />
         <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/ic_baseline_border_outer_24.xml" value="0.184" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/ic_check_mark_svgrepo_com.xml" value="0.184" />
         <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/ic_circle_outline_svgrepo_com.xml" value="0.184" />
         <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/ic_launcher_background.xml" value="0.179" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/ic_navigation_bar_menubar_hamburger_menu_svgrepo_com.xml" value="0.1685" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/ic_notes_notepad_svgrepo_com.xml" value="0.1685" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/ic_people_circle_svgrepo_com.xml" value="0.1685" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/ic_profile_svgrepo_com.xml" value="0.153" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/ic_trophy_svgrepo_com.xml" value="0.184" />
         <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/important1.xml" value="0.184" />
         <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/impotance2.xml" value="0.184" />
-        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/layout/activity_add_goal_page.xml" value="0.1" />
-        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/layout/activity_goal_page.xml" value="0.22" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/sep.xml" value="0.1685" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/drawable/splitter.xml" value="0.1685" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.116796875" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/layout-w936dp/activity_login.xml" value="0.131640625" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/layout/activity_add_goal_page.xml" value="0.22" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/layout/activity_goal_page.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/layout/activity_home_page.xml" value="0.22" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/layout/activity_login.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/layout/activity_main.xml" value="0.1453804347826087" />
+        <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/layout/activity_sign_up.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/hlakk/AndroidStudioProjects/GoalTracker/app/src/main/res/layout/recycler_view_row.xml" value="0.22" />
       </map>
     </option>

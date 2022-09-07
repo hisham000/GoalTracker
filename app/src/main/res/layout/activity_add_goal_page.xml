@@ -133,7 +133,8 @@
         app:layout_constraintBottom_toTopOf="@+id/DueDateEt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/GoalNameET" />
+        app:layout_constraintTop_toBottomOf="@+id/GoalNameET"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView"

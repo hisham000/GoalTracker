@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 public class GoalsDB {
+    public static final String KEY_ROWID = "_ID";
     public static final String KEY_ROWGN = "_GN";//Goal Name
     public static final String KEY_Category = "_category";
     public static final String KEY_DueDate = "due_date";
@@ -40,11 +41,12 @@ public class GoalsDB {
         @Override
         public void onCreate(SQLiteDatabase db) {
            String sqlCode = "CREATE TABLE " + DATABASE_TABLE + " (" +
-                KEY_ROWGN + "TEXT PRIMARY KEY NOT NULL, " +
+                   KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                   KEY_ROWGN + " TEXT NOT NULL, " +
                    KEY_Category + " TEXT NOT NULL, " +
                    KEY_DueDate + " TEXT NOT NULL, " +
                    KEY_Importance + " TEXT NOT NULL, " +
-                   KEY_ProgressPercentage + "TEXT NOT NULL, " +
+                   KEY_ProgressPercentage + " TEXT NOT NULL, " +
                    KEY_Description + " TEXT NOT NULL);";
 
            db.execSQL(sqlCode);//As soon as we execute this our table will be created
@@ -81,26 +83,7 @@ public class GoalsDB {
         return ourDatabase.insert(DATABASE_TABLE, null, cv);
 
     }
-    public String getData()
-    {
-        String [] columns = new String[] {KEY_ROWGN, KEY_Description, KEY_DueDate, KEY_Category, KEY_Importance, KEY_ProgressPercentage};
-        Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null,null,null,null);
-        String result = "";
 
-        int iProgressPercentage = c.getColumnIndex(KEY_ProgressPercentage);
-        int iRowGN = c.getColumnIndex(KEY_ROWGN);
-        int iDescription = c.getColumnIndex(KEY_Description);
-        int iImportance = c.getColumnIndex(KEY_Importance);
-        int iCategory = c.getColumnIndex(KEY_Category);
-        int iDueDate = c.getColumnIndex(KEY_DueDate);
-
-        for(c.moveToFirst();!c.isAfterLast();c.moveToNext()){
-            result = result + c.getString(iRowGN) + ": " + c.getString(iDescription) + " "+
-                    c.getString(iImportance) + " " + c.getString(iCategory) + " " + c.getString(iDueDate);
-        }
-        c.close();
-        return result;
-    }
     public ArrayList getNameList() {
         String[] columns = new String[]{KEY_ROWGN};//specify which columns to retrieve
         Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);//create a cursor to start at a certain position
