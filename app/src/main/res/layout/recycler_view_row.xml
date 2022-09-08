@@ -27,13 +27,16 @@ tools:context=".MainActivity">
                 style="@style/CircularDeterminateProgressBar"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
+                android:indeterminate="false"
+                android:indeterminateTint="#FFEB3B"
+                android:progressBackgroundTint="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
-                tools:progress="0" />
+                tools:progress="50" />
 
             <TextView
                 android:id="@+id/text_view_progress"
@@ -45,7 +48,7 @@ tools:context=".MainActivity">
                 app:layout_constraintHorizontal_bias="0.567"
                 app:layout_constraintStart_toStartOf="@+id/progress_bar"
                 app:layout_constraintTop_toTopOf="@+id/progress_bar"
-                tools:text="0%" />
+                tools:text="50%" />
 
             <TextView
                 android:id="@+id/DueDate"

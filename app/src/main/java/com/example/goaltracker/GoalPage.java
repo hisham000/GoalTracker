@@ -15,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class GoalPage extends AppCompatActivity {
+public class GoalPage extends AppCompatActivity implements Recycler_View_Interface {
     ArrayList<GoalModel> goalModels = new ArrayList<>();
     TextView Num_of_coins;
     FloatingActionButton Add_Goal_Button;
@@ -29,7 +29,7 @@ public class GoalPage extends AppCompatActivity {
         setUpGoalModels();
 
         GM_RecyclerViewAdapter adapter = new GM_RecyclerViewAdapter(this,
-                goalModels);
+                goalModels, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Add_Goal_Button = findViewById(R.id.Add_Goal_Button);
@@ -69,5 +69,9 @@ public class GoalPage extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onItemClick(int position) {
+        //go to tasks in goal page
+        startActivity(new Intent(GoalPage.this,TaskInGoal.class));
+    }
 }

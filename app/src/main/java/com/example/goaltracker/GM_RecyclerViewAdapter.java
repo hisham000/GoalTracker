@@ -13,12 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 class GM_RecyclerViewAdapter extends RecyclerView.Adapter<GM_RecyclerViewAdapter.MyViewHolder>{
+    private final Recycler_View_Interface recycler_View_Interface;
+
     Context context;
     ArrayList<GoalModel> goalModels;
 
-    public GM_RecyclerViewAdapter(Context context, ArrayList<GoalModel> goalModels){
+    public GM_RecyclerViewAdapter(Context context, ArrayList<GoalModel> goalModels, Recycler_View_Interface recycler_View_Interface){
         this.context = context;
         this.goalModels = goalModels;
+        this.recycler_View_Interface = recycler_View_Interface;
     }
 
     @NonNull
@@ -26,7 +29,7 @@ class GM_RecyclerViewAdapter extends RecyclerView.Adapter<GM_RecyclerViewAdapter
     public GM_RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recycler_view_row, parent,false);
-        return new GM_RecyclerViewAdapter.MyViewHolder(view);
+        return new GM_RecyclerViewAdapter.MyViewHolder(view, recycler_View_Interface);
 
 
         //This is where we inflate the layout(giving a look to our rows)
@@ -57,7 +60,7 @@ class GM_RecyclerViewAdapter extends RecyclerView.Adapter<GM_RecyclerViewAdapter
         ProgressBar pbP;
 
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, Recycler_View_Interface recycler_view_interface) {
             //grabbing the views from our recycler view row layout file and assigning them to variables
             super(itemView);
 
@@ -67,6 +70,19 @@ class GM_RecyclerViewAdapter extends RecyclerView.Adapter<GM_RecyclerViewAdapter
             tvPb = itemView.findViewById(R.id.text_view_progress);
             pbP = itemView.findViewById(R.id.progress_bar);
 
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (recycler_view_interface != null){
+                        int pos = getAdapterPosition();
+
+                        if (pos != RecyclerView.NO_POSITION){
+                          recycler_view_interface.onItemClick(pos);
+                        }
+                    }
+                }
+            });
 
         }
     }
