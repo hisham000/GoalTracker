@@ -27,9 +27,6 @@
             android:name=".AddGoalPage"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".GoalPage"
             android:exported="true">
             <intent-filter>
